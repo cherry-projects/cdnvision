@@ -2,10 +2,8 @@
 http://image.cdnvision.com/name/fetch/http://www.yourdomain.com/filepath/test.jpg?width=100
 */
 
-import stringify from './stringify';
-import isEmpty from 'lodash/isEmpty';
-
-const IMAGE_HOST = 'image.cdnvision.com';
+import Type from './constants/Type';
+import { build } from './utils/url';
 
 export default class Image {
   constructor(options = {}) {
@@ -49,23 +47,14 @@ export default class Image {
 
   getURL() {
     const options = this.getOptions();
-    const { protocol, name, path } = options;
 
-    const query = !isEmpty(options)
-      ? `?${stringify(options)}`
-      : '';
-
-    const base = `//${IMAGE_HOST}/${name}/${encodeURIComponent(path)}${query}`;
-    if (protocol) {
-      return `${protocol}:${base}`;
-    }
-
-    return base;
+    return build(Type.IMAGE, options);
   }
 
   getImage(alt) {
     const img = new window.Image();
     img.src = this.getURL();
+    img.alt = alt;
 
     return img;
   }
