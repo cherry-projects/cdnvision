@@ -1,5 +1,5 @@
 /*
-http://image.cdnvision.com/name/fetch/http://www.yourdomain.com/filepath/test.jpg?width=100
+http://image.cdnvision.com/name/http://www.yourdomain.com/filepath/test.jpg?width=100
 */
 
 import Type from './constants/Type';

@@ -1,6 +1,10 @@
 import Client from './Client';
 import Image from './Image';
-import Action from './constants/Action';
+import Host from './constants/Host';
+import Type from './constants/Type';
+import * as url from './utils/url';
 
-export { Action, Image, Client };
+export { url };
+export { Host, Type };
+export { Image, Client };
 export default Client;
