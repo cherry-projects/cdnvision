@@ -13,14 +13,15 @@ export function build(type, options = {}) {
     throw new Error(`Host for type: ${type} does not exists`);
   }
 
-  const query = !isEmpty(options)
-    ? `?${stringify(options)}`
-    : '';
-
   const parts = [host, name];
   if (path) {
     parts.push(encodeURIComponent(path));
+    delete options.path;
   }
+
+  const query = !isEmpty(options)
+    ? `?${stringify(options)}`
+    : '';
 
   const base = `//${parts.join('/')}${query}`;
   if (protocol) {
