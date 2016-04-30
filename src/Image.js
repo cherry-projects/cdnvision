@@ -5,6 +5,10 @@ http://image.cdnvision.com/name/http://www.yourdomain.com/filepath/test.jpg?widt
 import Type from './constants/Type';
 import { build } from './utils/url';
 
+export function getImageURL(options = {}) {
+  build(Type.IMAGE, options);
+}
+
 export default class Image {
   constructor(options = {}) {
     if (!options.name) {
@@ -48,7 +52,7 @@ export default class Image {
   getURL() {
     const options = this.getOptions();
 
-    return build(Type.IMAGE, options);
+    return getImageURL(options);
   }
 
   getImage(alt) {
