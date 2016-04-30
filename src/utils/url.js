@@ -16,11 +16,16 @@ export function build(type, options = {}) {
   const parts = [host, name];
   if (path) {
     parts.push(encodeURIComponent(path));
-    delete options.path;
   }
 
-  const query = !isEmpty(options)
-    ? `?${stringify(options)}`
+  const finallOptions = {
+    ...options,
+    name: void 0,
+    path: void 0,
+  };
+
+  const query = !isEmpty(finallOptions)
+    ? `?${stringify(finallOptions)}`
     : '';
 
   const base = `//${parts.join('/')}${query}`;
