@@ -4,9 +4,19 @@ http://image.cdnvision.com/name/http://www.yourdomain.com/filepath/test.jpg?widt
 
 import Type from './constants/Type';
 import { build } from './utils/url';
+import isPlainObject from 'lodash/isPlainObject';
 
-export function getImageURL(options = {}) {
-  build(Type.IMAGE, options);
+export function getImageURL(path, options = {}) {
+  if (isPlainObject(path)) {
+    return getImageURL(null, path);
+  } else if (typeof path === 'string') {
+    return getImageURL(null, {
+      ...options,
+      path,
+    });
+  }
+
+  return build(Type.IMAGE, options);
 }
 
 export default class Image {
